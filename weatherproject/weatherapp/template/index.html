@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container"> <!-- Ensure this matches the CSS class name -->
+        <h1>Weather App</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter City"> <!-- Added name attribute -->
+            <button type="submit" class="btn">Search</button> <!-- Added btn class -->
+        </form>
+        <div class="weather">
+            <div class="left">
+                <h2>{{ temp }}&#176; C</h2>
+                <h3>{{ city }}</h3>
+            </div>
+            <div class="right">
+                <div class="icon">
+                    <img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="{{ Description }}" width="100px"> <!-- Added alt attribute -->
+                </div>
+                <div class="condition">
+                    <p>{{ description }}</p> <!-- Fixed lowercase description -->
+                    <p>{{ day }}</p> <!-- Fixed lowercase day -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
